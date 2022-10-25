@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Conversor</string>
+
+    <!-- arrays para rellenar los spinners -->
+    <string-array name="arrayPeso">
+        <item>"Toneladas"</item>
+        <item>"Kilogramos"</item>
+        <item>"Gramos"</item>
+    </string-array>
+
+    <string-array name="arrayTemperatura">
+        <item>"Centigrados"</item>
+        <item>Kelvin</item>
+    </string-array>
+
+    <string-array name="arrayHdd">
+        <item>TeraBytes</item>
+        <item>GigaBytes</item>
+        <item>MegaBytes</item>
+    </string-array>
 </resources>

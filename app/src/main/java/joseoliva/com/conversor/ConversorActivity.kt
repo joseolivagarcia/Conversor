@@ -8,6 +8,7 @@ import joseoliva.com.conversor.databinding.ActivityConversorBinding
 class ConversorActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityConversorBinding
+    var numarray = 0 //necesito esta var para indicarle que array de unidades usare en el spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,6 +16,20 @@ class ConversorActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val medidarecibida = intent.extras!!.getString("medida")
-        Toast.makeText(this,"recibo: $medidarecibida",Toast.LENGTH_SHORT).show()
+        val medidaimagenrecibida = intent.extras!!.getInt("imagen")
+
+        binding.ivimagenmedida.setImageResource(medidaimagenrecibida)
+        /*
+        creo un condicional para segun que medida reciba asignarle un entero a la var numarray
+         */
+        when(medidarecibida){
+            "Peso" -> {
+                numarray = R.array.arrayPeso
+                return
+            }
+        }
+        //relleno los spinners
+
+
     }
 }

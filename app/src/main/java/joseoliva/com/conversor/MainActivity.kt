@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
     private fun onItemSelected(medidaitem: Unidad) {
         val intent = Intent(this,ConversorActivity::class.java)
         intent.putExtra("medida", medidaitem.medida)
+        intent.putExtra("imagen", medidaitem.imagen)
         startActivity(intent)
     }
 }
