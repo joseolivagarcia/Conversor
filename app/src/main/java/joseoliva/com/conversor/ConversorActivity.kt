@@ -62,17 +62,63 @@ class ConversorActivity : AppCompatActivity() {
                 Toast.makeText(this, "Debes introducir un valor", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            if(sporigen.selectedItem == spdestino.selectedItem){
+                Toast.makeText(this, "Has seleccionado las mismas unidades", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             when (medidarecibida) {
                 "Peso" -> {
                     conviertePeso()
                 }
                 "Temperatura" -> {
-
+                    convierteTemperatura()
                 }
                 "Capacidad HDD" -> {
-
+                    convierteHdd()
                 }
             }
+        }
+    }
+
+    private fun convierteHdd() {
+        //obtengo la unidad seleccionada en cada spinner
+        val unidadOrigen: Int = sporigen.getSelectedItemPosition()
+        val unidadDestino: Int = spdestino.getSelectedItemPosition()
+        valorescrito = binding.etcantidad.text.toString()
+
+        //paso a Double el valor que el usuario a escrito para convertir
+        val valoraconvertir = binding.etcantidad.text.toString().toDouble()
+        //resto la pos origen y destino para saber cuanta diferencia hay entre una y otra
+        val resta = unidadOrigen - unidadDestino
+        if (resta > 0) {
+            resultadofinal = valoraconvertir * Math.pow(1024.0, -resta.toDouble())
+            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+
+        }
+        if (resta < 0) {
+            resultadofinal = valoraconvertir / Math.pow(1024.0, resta.toDouble())
+            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+        }
+        if (resta == 0) {
+            resultadofinal = valoraconvertir
+            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+        }
+    }
+
+    private fun convierteTemperatura() {
+        val medidaOrigen: Int = sporigen.getSelectedItemPosition()
+        val medidaDestino: Int = spdestino.getSelectedItemPosition()
+        valorescrito = binding.etcantidad.text.toString()
+        val valoraconvertir = binding.etcantidad.text.toString().toDouble()
+        if (medidaOrigen == 0 && medidaDestino == 1) {
+            resultadofinal = valoraconvertir + 273.15
+            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+        } else if (medidaOrigen == 1 && medidaDestino == 0) {
+            resultadofinal = valoraconvertir - 273.15
+            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+        } else {
+            resultadofinal = valoraconvertir
+            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
         }
     }
 
