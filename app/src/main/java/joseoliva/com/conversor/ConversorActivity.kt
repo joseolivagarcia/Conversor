@@ -10,7 +10,13 @@ import joseoliva.com.conversor.databinding.ActivityConversorBinding
 class ConversorActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityConversorBinding
-    var numarray: Int = 0 //necesito esta var para indicarle que array de unidades usare en el spinner
+    var numarray: Int =
+        0 //necesito esta var para indicarle que array de unidades usare en el spinner
+    lateinit var sporigen: Spinner
+    lateinit var spdestino: Spinner
+    lateinit var valorescrito: String
+    var resultadofinal: Double = 0.0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,11 +26,14 @@ class ConversorActivity : AppCompatActivity() {
         val medidarecibida = intent.extras!!.getString("medida")
         val medidaimagenrecibida = intent.extras!!.getInt("imagen")
 
+        sporigen = binding.sporigen
+        spdestino = binding.spdestino
+
         binding.ivimagenmedida.setImageResource(medidaimagenrecibida)
         /*
         creo un condicional para segun que medida reciba asignarle un entero a la var numarray
          */
-        when(medidarecibida){
+        when (medidarecibida) {
             "Peso" -> {
                 numarray = R.array.arrayPeso
             }
@@ -37,28 +46,58 @@ class ConversorActivity : AppCompatActivity() {
         }
 
         //relleno los spinners
-        val adapspinner = ArrayAdapter.createFromResource(this, numarray, android.R.layout.simple_spinner_item)
+        val adapspinner =
+            ArrayAdapter.createFromResource(this, numarray, android.R.layout.simple_spinner_item)
         adapspinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.sporigen.adapter = adapspinner
-        binding.spdestino.adapter = adapspinner
+        sporigen.adapter = adapspinner
+        spdestino.adapter = adapspinner
 
         /*
         doy funcionalidad al boton de convertir. Segun la medida que hubiese seleccionado
         ire a una funcion u otra para convertir.
          */
         binding.btnconversion.setOnClickListener {
-
-            when(medidarecibida){
+            var valorescrito = binding.etcantidad.text.toString()
+            if (valorescrito.isEmpty()) {
+                Toast.makeText(this, "Debes introducir un valor", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            when (medidarecibida) {
                 "Peso" -> {
-                    Toast.makeText(this,"voy a convertir $medidarecibida",Toast.LENGTH_SHORT).show()
+                    conviertePeso()
                 }
                 "Temperatura" -> {
-                    Toast.makeText(this,"voy a convertir $medidarecibida",Toast.LENGTH_SHORT).show()
+
                 }
                 "Capacidad HDD" -> {
-                    Toast.makeText(this,"voy a convertir $medidarecibida",Toast.LENGTH_SHORT).show()
+
                 }
             }
+        }
+    }
+
+    private fun conviertePeso() {
+        //obtengo la unidad seleccionada en cada spinner
+        val unidadOrigen: Int = sporigen.getSelectedItemPosition()
+        val unidadDestino: Int = spdestino.getSelectedItemPosition()
+        valorescrito = binding.etcantidad.text.toString()
+
+        //paso a Double el valor que el usuario a escrito para convertir
+        val valoraconvertir = binding.etcantidad.text.toString().toDouble()
+        //resto la pos origen y destino para saber cuanta diferencia hay entre una y otra
+        val resta = unidadOrigen - unidadDestino
+        if (resta > 0) {
+            resultadofinal = valoraconvertir * Math.pow(1000.0, -resta.toDouble())
+            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+
+        }
+        if (resta < 0) {
+            resultadofinal = valoraconvertir / Math.pow(1000.0, resta.toDouble())
+            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+        }
+        if (resta == 0) {
+            resultadofinal = valoraconvertir
+            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
         }
 
     }
