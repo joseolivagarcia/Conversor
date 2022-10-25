@@ -39,7 +39,7 @@ class UnidadAdapter(
 
         //para pintar la ultima tarjeta (item)
         if(position == listaMedidas.size -1){
-            val color: String = "#FF03DAC5"
+            val color: String = "#95DFD8"
             holder.card.setBackgroundColor(Color.parseColor(color))
         }
 

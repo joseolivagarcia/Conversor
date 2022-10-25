@@ -44,4 +44,9 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("imagen", medidaitem.imagen)
         startActivity(intent)
     }
+
+    @Override
+    override fun onBackPressed() {
+
+    }
 }

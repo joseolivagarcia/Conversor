@@ -41,7 +41,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="10dp"
-        android:textSize="30dp"
+        android:textSize="24dp"
         android:textStyle="bold"
         android:inputType="numberDecimal"
         android:singleLine="true"
