@@ -1,5 +1,6 @@
 package joseoliva.com.conversor.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -35,6 +36,12 @@ class UnidadAdapter(
          */
         val item = listaMedidas[position]
         holder.render(item,onClickListener)
+
+        //para pintar la ultima tarjeta (item)
+        if(position == listaMedidas.size -1){
+            val color: String = "#FF03DAC5"
+            holder.card.setBackgroundColor(Color.parseColor(color))
+        }
 
     }
 

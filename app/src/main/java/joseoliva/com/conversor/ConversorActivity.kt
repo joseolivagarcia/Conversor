@@ -43,6 +43,13 @@ class ConversorActivity : AppCompatActivity() {
             "Capacidad HDD" -> {
                 numarray = R.array.arrayHdd
             }
+            "Longitud" -> {
+                numarray = R.array.arrayLongitud
+            }
+            "Longitud (Extraña)" -> {
+                numarray = R.array.arrayraro
+            }
+
         }
 
         //relleno los spinners
@@ -76,7 +83,63 @@ class ConversorActivity : AppCompatActivity() {
                 "Capacidad HDD" -> {
                     convierteHdd()
                 }
+                "Longitud" -> {
+                    convierteLong()
+                }
+                "Longitud (Extraña)" -> {
+                    convierteRaro()
+                }
             }
+        }
+    }
+
+    private fun convierteRaro() {
+        //obtengo la unidad seleccionada en cada spinner
+        val unidadOrigen: Int = sporigen.getSelectedItemPosition()
+        val unidadDestino: Int = spdestino.getSelectedItemPosition()
+        valorescrito = binding.etcantidad.text.toString()
+
+        //paso a Double el valor que el usuario a escrito para convertir
+        val valoraconvertir = binding.etcantidad.text.toString().toDouble()
+        //resto la pos origen y destino para saber cuanta diferencia hay entre una y otra
+        val resta = unidadOrigen - unidadDestino
+        if (resta > 0) {
+            resultadofinal = valoraconvertir * Math.pow(200000000.0, resta.toDouble())
+            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+
+        }
+        if (resta < 0) {
+            resultadofinal = valoraconvertir / Math.pow(200000000.0, -resta.toDouble())
+            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+        }
+        if (resta == 0) {
+            resultadofinal = valoraconvertir
+            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+        }
+    }
+
+    private fun convierteLong() {
+        //obtengo la unidad seleccionada en cada spinner
+        val unidadOrigen: Int = sporigen.getSelectedItemPosition()
+        val unidadDestino: Int = spdestino.getSelectedItemPosition()
+        valorescrito = binding.etcantidad.text.toString()
+
+        //paso a Double el valor que el usuario a escrito para convertir
+        val valoraconvertir = binding.etcantidad.text.toString().toDouble()
+        //resto la pos origen y destino para saber cuanta diferencia hay entre una y otra
+        val resta = unidadOrigen - unidadDestino
+        if (resta > 0) {
+            resultadofinal = valoraconvertir * Math.pow(10.0, resta.toDouble())
+            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+
+        }
+        if (resta < 0) {
+            resultadofinal = valoraconvertir / Math.pow(10.0, -resta.toDouble())
+            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+        }
+        if (resta == 0) {
+            resultadofinal = valoraconvertir
+            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
         }
     }
 

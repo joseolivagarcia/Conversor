@@ -13,7 +13,9 @@ class UnidadProvider {
         val unidadList = listOf<Unidad>(
             Unidad(R.drawable.peso,"Peso","Ton, Kg, g"),
             Unidad(R.drawable.temperatura,"Temperatura","Celsius, Kelvin"),
-            Unidad(R.drawable.hdd,"Capacidad HDD","Tb, Gb, Mb")
+            Unidad(R.drawable.hdd,"Capacidad HDD","Tb, Gb, Mb"),
+            Unidad(R.drawable.longitud,"Longitud","mm, cm, dm, m, dam, hm, km "),
+            Unidad(R.drawable.icobarba,"Longitud (Extraña)","Segundos-Barba, metros")
         )
     }
 }
