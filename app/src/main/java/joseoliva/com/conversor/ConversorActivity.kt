@@ -1,6 +1,11 @@
 package joseoliva.com.conversor
 
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
@@ -105,16 +110,28 @@ class ConversorActivity : AppCompatActivity() {
         val resta = unidadOrigen - unidadDestino
         if (resta > 0) {
             resultadofinal = valoraconvertir * Math.pow(200000000.0, resta.toDouble())
-            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+            /*
+            Para cambiar el color del texto a partir del = cuento las letras que hay hasta el propio =
+            y a partir de ahi pinto hasta el final.
+             */
+            val mensaje: SpannableString = SpannableString("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+            val colorspan: ForegroundColorSpan = ForegroundColorSpan(Color.parseColor("#FF018786"))
+            val letras = contarletras(mensaje.toString())
+            mensaje.setSpan(colorspan,letras +1,mensaje.length,Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+            binding.tvresultado.setText(mensaje)
 
         }
         if (resta < 0) {
             resultadofinal = valoraconvertir / Math.pow(200000000.0, -resta.toDouble())
-            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
-        }
-        if (resta == 0) {
-            resultadofinal = valoraconvertir
-            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+            /*
+            Para cambiar el color del texto a partir del = cuento las letras que hay hasta el propio =
+            y a partir de ahi pinto hasta el final.
+             */
+            val mensaje: SpannableString = SpannableString("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+            val colorspan: ForegroundColorSpan = ForegroundColorSpan(Color.parseColor("#FF018786"))
+            val letras = contarletras(mensaje.toString())
+            mensaje.setSpan(colorspan,letras +1,mensaje.length,Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+            binding.tvresultado.setText(mensaje)
         }
     }
 
@@ -130,16 +147,28 @@ class ConversorActivity : AppCompatActivity() {
         val resta = unidadOrigen - unidadDestino
         if (resta > 0) {
             resultadofinal = valoraconvertir * Math.pow(10.0, resta.toDouble())
-            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+            /*
+            Para cambiar el color del texto a partir del = cuento las letras que hay hasta el propio =
+            y a partir de ahi pinto hasta el final.
+             */
+            val mensaje: SpannableString = SpannableString("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+            val colorspan: ForegroundColorSpan = ForegroundColorSpan(Color.parseColor("#FF018786"))
+            val letras = contarletras(mensaje.toString())
+            mensaje.setSpan(colorspan,letras +1,mensaje.length,Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+            binding.tvresultado.setText(mensaje)
 
         }
         if (resta < 0) {
             resultadofinal = valoraconvertir / Math.pow(10.0, -resta.toDouble())
-            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
-        }
-        if (resta == 0) {
-            resultadofinal = valoraconvertir
-            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+            /*
+            Para cambiar el color del texto a partir del = cuento las letras que hay hasta el propio =
+            y a partir de ahi pinto hasta el final.
+             */
+            val mensaje: SpannableString = SpannableString("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+            val colorspan: ForegroundColorSpan = ForegroundColorSpan(Color.parseColor("#FF018786"))
+            val letras = contarletras(mensaje.toString())
+            mensaje.setSpan(colorspan,letras +1,mensaje.length,Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+            binding.tvresultado.setText(mensaje)
         }
     }
 
@@ -155,16 +184,28 @@ class ConversorActivity : AppCompatActivity() {
         val resta = unidadOrigen - unidadDestino
         if (resta > 0) {
             resultadofinal = valoraconvertir * Math.pow(1024.0, -resta.toDouble())
-            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+            /*
+            Para cambiar el color del texto a partir del = cuento las letras que hay hasta el propio =
+            y a partir de ahi pinto hasta el final.
+             */
+            val mensaje: SpannableString = SpannableString("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+            val colorspan: ForegroundColorSpan = ForegroundColorSpan(Color.parseColor("#FF018786"))
+            val letras = contarletras(mensaje.toString())
+            mensaje.setSpan(colorspan,letras +1,mensaje.length,Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+            binding.tvresultado.setText(mensaje)
 
         }
         if (resta < 0) {
             resultadofinal = valoraconvertir / Math.pow(1024.0, resta.toDouble())
-            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
-        }
-        if (resta == 0) {
-            resultadofinal = valoraconvertir
-            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+            /*
+            Para cambiar el color del texto a partir del = cuento las letras que hay hasta el propio =
+            y a partir de ahi pinto hasta el final.
+             */
+            val mensaje: SpannableString = SpannableString("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+            val colorspan: ForegroundColorSpan = ForegroundColorSpan(Color.parseColor("#FF018786"))
+            val letras = contarletras(mensaje.toString())
+            mensaje.setSpan(colorspan,letras +1,mensaje.length,Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+            binding.tvresultado.setText(mensaje)
         }
     }
 
@@ -175,13 +216,26 @@ class ConversorActivity : AppCompatActivity() {
         val valoraconvertir = binding.etcantidad.text.toString().toDouble()
         if (medidaOrigen == 0 && medidaDestino == 1) {
             resultadofinal = valoraconvertir + 273.15
-            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+            /*
+            Para cambiar el color del texto a partir del = cuento las letras que hay hasta el propio =
+            y a partir de ahi pinto hasta el final.
+             */
+            val mensaje: SpannableString = SpannableString("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+            val colorspan: ForegroundColorSpan = ForegroundColorSpan(Color.parseColor("#FF018786"))
+            val letras = contarletras(mensaje.toString())
+            mensaje.setSpan(colorspan,letras +1,mensaje.length,Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+            binding.tvresultado.setText(mensaje)
         } else if (medidaOrigen == 1 && medidaDestino == 0) {
             resultadofinal = valoraconvertir - 273.15
-            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
-        } else {
-            resultadofinal = valoraconvertir
-            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+            /*
+            Para cambiar el color del texto a partir del = cuento las letras que hay hasta el propio =
+            y a partir de ahi pinto hasta el final.
+             */
+            val mensaje: SpannableString = SpannableString("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+            val colorspan: ForegroundColorSpan = ForegroundColorSpan(Color.parseColor("#FF018786"))
+            val letras = contarletras(mensaje.toString())
+            mensaje.setSpan(colorspan,letras +1,mensaje.length,Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+            binding.tvresultado.setText(mensaje)
         }
     }
 
@@ -197,17 +251,39 @@ class ConversorActivity : AppCompatActivity() {
         val resta = unidadOrigen - unidadDestino
         if (resta > 0) {
             resultadofinal = valoraconvertir * Math.pow(1000.0, -resta.toDouble())
-            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
-
+            /*
+            Para cambiar el color del texto a partir del = cuento las letras que hay hasta el propio =
+            y a partir de ahi pinto hasta el final.
+             */
+            val mensaje: SpannableString = SpannableString("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+            val colorspan: ForegroundColorSpan = ForegroundColorSpan(Color.parseColor("#FF018786"))
+            val letras = contarletras(mensaje.toString())
+            mensaje.setSpan(colorspan,letras +1,mensaje.length,Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+            binding.tvresultado.setText(mensaje)
         }
         if (resta < 0) {
             resultadofinal = valoraconvertir / Math.pow(1000.0, resta.toDouble())
-            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+            /*
+            Para cambiar el color del texto a partir del = cuento las letras que hay hasta el propio =
+            y a partir de ahi pinto hasta el final.
+             */
+            val mensaje: SpannableString = SpannableString("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
+            val colorspan: ForegroundColorSpan = ForegroundColorSpan(Color.parseColor("#FF018786"))
+            val letras = contarletras(mensaje.toString())
+            mensaje.setSpan(colorspan,letras +1,mensaje.length,Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+            binding.tvresultado.setText(mensaje)
         }
-        if (resta == 0) {
-            resultadofinal = valoraconvertir
-            binding.tvresultado.setText("$valorescrito ${sporigen.selectedItem.toString()} = $resultadofinal ${spdestino.selectedItem.toString()}")
-        }
+    }
 
+    fun contarletras(texto: String): Int{
+        var numletras: Int = 0
+        for (l in texto){
+            if(l != '='){
+                numletras++
+            }else{
+                break
+            }
+        }
+        return numletras
     }
 }
