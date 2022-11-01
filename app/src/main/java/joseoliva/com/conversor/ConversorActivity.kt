@@ -6,10 +6,13 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import joseoliva.com.conversor.databinding.ActivityConversorBinding
 
 class ConversorActivity : AppCompatActivity() {
@@ -63,6 +66,41 @@ class ConversorActivity : AppCompatActivity() {
         adapspinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         sporigen.adapter = adapspinner
         spdestino.adapter = adapspinner
+
+        //Si tengo la misma unidad en ambos lados desactivo el boton de conversion
+        sporigen.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    if(position == spdestino.selectedItemPosition){
+                        binding.btnconversion.isEnabled = false
+                        binding.btnconversion.setImageResource(R.drawable.icoconveroff)
+                    }else{
+                        binding.btnconversion.isEnabled = true
+                        binding.btnconversion.setImageResource(R.drawable.icoconver)
+                    }
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+        }
+        spdestino.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if(position == sporigen.selectedItemPosition){
+                    binding.btnconversion.isEnabled = false
+                    binding.btnconversion.setImageResource(R.drawable.icoconveroff)
+                }else{
+                    binding.btnconversion.isEnabled = true
+                    binding.btnconversion.setImageResource(R.drawable.icoconver)
+                }
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+        }
+
+        //doy funcionalidad al boton de alternar la seleccion de spinner entre origen y destino
+
+        binding.btncambiarpos.setOnClickListener {
+            val pos1 = sporigen.selectedItemPosition
+            val pos2 = spdestino.selectedItemPosition
+            sporigen.setSelection(pos2)
+            spdestino.setSelection(pos1)
+        }
 
         /*
         doy funcionalidad al boton de convertir. Segun la medida que hubiese seleccionado
